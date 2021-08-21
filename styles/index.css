@@ -1,0 +1,100 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: antiquewhite;
+
+    font-family: Roboto, sans-serif;
+    margin: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+
+header {
+    background-color: #333;
+    width: 100vw;
+    height: 6vh;
+}
+
+header section {
+    height: 100%;
+}
+
+header section ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+
+    height: 100%;
+}
+  
+header section ul li {
+    float: left;
+    height: 100%;
+
+  }
+  
+  header section ul li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    height: 100%;
+
+  }
+  
+  /* Change the link color to #111 (black) on hover */
+  header section ul li a:hover {
+    background-color: #111;
+  }
+
+.active{
+  background-color: antiquewhite;
+  color: black;
+  font-weight: bold;
+}
+.active:hover{
+  background-color: antiquewhite;
+  color: black;
+  font-weight: bold;
+}
+  main {
+    height: 88vh;
+    width: 100vw;
+    overflow: auto;
+  }
+  main section {
+    width: 100%;
+    background-color: antiquewhite;
+  }
+  main section canvas{
+    height: 85vh !important;
+  }
+  main section div{
+    height: 85vh !important;
+  }
+ 
+
+
+  footer {
+    height: 6vh;
+    width: 100vw;
+    background-color: #333;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  footer p {
+    color: #fff;
+  }

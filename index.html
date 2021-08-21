@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" target='_blank' href="img/favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#fff" />
+    <link target='_blank' href="https://fonts.googleapis.com/css2?family=Roboto&family=Ubuntu:wght@700&display=swap" rel="stylesheet">
+    <link target='_blank' href="styles/index.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/3f3f182c5b.js" crossorigin="anonymous"></script>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script defer src="js/sensor1.js"></script>
+
+
+    <!-- Primary Meta Tags -->
+    <title>Interdisciplinar - Sensor 1</title>
+  </head>
+  <body>
+      <header>
+        <section>
+            <ul>
+                <li><a href="sensor1.html" class="active">Sensor 1</a></li>
+                <li><a href="sensor2.html">Sensor 2</a></li>
+                <li><a href="sensor3.html">Sensor 3</a></li>
+                <li><a href="sensor4.html">Sensor 4</a></li>
+              </ul>
+          </section>
+      </header>
+      <main>
+        <section>
+            <canvas id="graph1" ></canvas>  
+            <button id="botaoIniciar">Iniciar</button>
+            <button id="botaoParar">Parar</button>            
+        </section>
+      </main>
+    
+
+    <footer>
+        <p>Copyright © <span id="year"></span> IFSULDEMINAS</p>
+    </footer>
+  </body>
+  
+  <script>
+    document.getElementById("year").innerHTML = new Date().getFullYear();
+  </script>
+
+</html>
