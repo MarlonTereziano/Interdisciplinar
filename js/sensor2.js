@@ -1,6 +1,6 @@
-const graphTwolabelX = [];
-const graphTwoDataInY = [];
-const graphTwoDataOutY = [];
+var graphTwolabelX = [];
+var graphTwoDataInY = [];
+var graphTwoDataOutY = [];
 var timer;
 var timer1;
 
@@ -64,6 +64,9 @@ const graphTwoData = {
     console.log("Parando Monitoramento!");
     clearInterval(timer);
     clearInterval(timer1);
+    graphTwolabelX = [];
+    graphTwoDataInY = [];
+    graphTwoDataOutY = [];
   });
 
   function tcpInGet(){

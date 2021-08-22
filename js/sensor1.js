@@ -1,6 +1,6 @@
-const graphOnelabelX = [];
-const graphOneDataInY = [];
-const graphOneDataOutY = [];
+var graphOnelabelX = [];
+var graphOneDataInY = [];
+var graphOneDataOutY = [];
 
 var timer;
 var timer1;
@@ -66,6 +66,9 @@ var dateTime = new Date();
     console.log("Parando Monitoramento!");
     clearInterval(timer);
     clearInterval(timer1);
+    graphOnelabelX = [];
+    graphOneDataInY = [];
+    graphOneDataOutY = [];
   });
 
   function tcpInGet(){
