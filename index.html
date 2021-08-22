@@ -1,51 +1,30 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" target='_blank' href="img/favicon.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#fff" />
-    <link target='_blank' href="https://fonts.googleapis.com/css2?family=Roboto&family=Ubuntu:wght@700&display=swap" rel="stylesheet">
-    <link target='_blank' href="styles/index.css" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/3f3f182c5b.js" crossorigin="anonymous"></script>
-    
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script defer src="js/sensor1.js"></script>
+<html lang="pt">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=], initial-scale=1.0">
+        <title>Initial Page</title>
+        <link rel="stylesheet" href="./styles/welcome.css">
+    </head>
 
+    <body>
 
-    <!-- Primary Meta Tags -->
-    <title>Interdisciplinar - TCP</title>
-  </head>
-  <body>
-      <header>
-        <section>
-            <ul>
-                <li><a href="index.html" class="active">TCP</a></li>
-                <li><a href="sensor2.html">IP</a></li>
-                <li><a href="sensor3.html">UDP</a></li>
-                <li><a href="sensor4.html">SNMP</a></li>
-              </ul>
-          </section>
-      </header>
-      <main>
-        <section>
-          <div>
-            <button id="botaoIniciar">INICIAR</button>
-            <button id="botaoParar">PARAR</button>            
-          </div>
-            <canvas id="graph1" ></canvas>  
-        </section>
-      </main>
-    
+        <main>
+          <div class='titulo'>Bem-vindo! Selecione o gráfico que deseja acessar!</div>
+          <p>SNMP é o protocolo padrão para monitoramento e gerenciamento de redes. A sigla SNMP é um acrônimo para “Simple Network Management Protocol” ou “Protocolo Simples de gerenciamento de redes”. Na prática, SNMP é o protocolo mais usado para saber o que acontece dentro de ativos de redes e serviços.</p>
+          <form action=".">
+              <div class="Select">
+                  <button formaction="./sensor1.html"> TCP</button>
+                  <button formaction="./sensor2.html"> IP</button>
+                  <button formaction="./sensor3.html"> UDP</button>
+                  <button formaction="./sensor4.html"> SNMP</button>
+              <div>
+              </form>
+        </main>
 
-    <footer>
-        <p>Copyright © <span id="year"></span> IFSULDEMINAS</p>
-    </footer>
-  </body>
-  
-  <script>
-    document.getElementById("year").innerHTML = new Date().getFullYear();
-  </script>
-
+        <footer>
+               Todos os direitos reservados 2021
+        </footer>
+        
+    </body>
 </html>
