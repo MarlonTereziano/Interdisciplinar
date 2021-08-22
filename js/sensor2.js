@@ -3,6 +3,9 @@ var graphTwoDataInY = [];
 var graphTwoDataOutY = [];
 var timer;
 var timer1;
+var dateTime = new Date();
+var rangeIn = 0;
+var rangeOut = 0;
 
 const graphTwoData = {
     labels: graphTwolabelX,
@@ -56,17 +59,18 @@ const graphTwoData = {
 
   document.getElementById("botaoIniciar").addEventListener('click',function (){
     console.log("Iniciando Monitoramento!");
-    timer = setInterval(tcpInGet,2000);
-    timer1 = setInterval(tcpOutGet,2000);
+    graphTwolabelX.length = 0;
+    graphTwoDataInY.length = 0;
+    graphTwoDataOutY.length = 0;
+    timer = setInterval(tcpInGet,1300);
+    timer1 = setInterval(tcpOutGet,1300);
   });
 
   document.getElementById("botaoParar").addEventListener('click',function (){
     console.log("Parando Monitoramento!");
     clearInterval(timer);
     clearInterval(timer1);
-    graphTwolabelX = [];
-    graphTwoDataInY = [];
-    graphTwoDataOutY = [];
+    
   });
 
   function tcpInGet(){
@@ -74,12 +78,23 @@ const graphTwoData = {
         url:"tcpAGet.php",
         data: "",
         method: "POST",
-        success: function(res){
-            var dateTime = new Date();
+        success: function(response){
+            // var dateTime = new Date();
+            // graphTwolabelX.push(dateTime.toLocaleString());
+            // graphTwoDataInY.push(res);
+            // myChart.update();
+
+            if(rangeIn === 0) {
+              rangeIn = response;
+            } else {
+              rangeIn = response - rangeIn;
+              graphTwoDataInY.push(rangeIn);
+              myChart.update();
+            }
             graphTwolabelX.push(dateTime.toLocaleString());
-            graphTwoDataInY.push(res);
-            myChart.update();
-        }
+            rangeIn = response;
+          }
+        
       })
   }
 
@@ -89,12 +104,18 @@ const graphTwoData = {
         url:"tcpPGet.php",
         data: "",
         method: "POST",
-        success: function(res){
-          console.log(res);
-            var dateTime = new Date();
-            graphTwolabelX.push(dateTime.toLocaleString());
-            graphTwoDataOutY.push(res);
+        success: function(response){
+          if(rangeOut === 0){
+            rangeOut = response
+          }else{
+            rangeOut = response - rangeOut;
+            graphTwoDataOutY.push(rangeOut);
             myChart.update();
+          }
+          graphTwolabelX.push(dateTime.toLocaleString());
+
+          rangeOut = response;
+
         }
       })
   }
