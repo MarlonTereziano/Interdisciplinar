@@ -43,7 +43,7 @@ const graphTwoData = {
           display: true,
           title: {
             display: true,
-            text: 'Aberturas TCP'
+            text: 'Aberturas IP'
           }
         }
       }
