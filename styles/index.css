@@ -78,10 +78,23 @@ header section ul li {
     background-color: antiquewhite;
   }
   main section canvas{
-    height: 85vh !important;
+    height: 80vh !important;
   }
   main section div{
-    height: 85vh !important;
+    height: 6vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  main section div button {
+    border: 1px solid black;
+    background-color: white;
+    padding: 1vh;
+    margin-left: 10px;
+    border-radius: 5px;
+
+    cursor: pointer;
   }
  
 
