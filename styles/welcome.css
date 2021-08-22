@@ -33,9 +33,10 @@ main .Select button{
     height: 15vh;
     margin: 30px;
     border: none;
-    background-color:black;
+    background-color:#6e6e6e;
     color: white;
     font-weight: bold;
+    box-shadow: 5px 5px 3px 2px rgba(0,0,0,0.2);
 
 }
 
@@ -60,7 +61,7 @@ body footer{
     justify-content: center;
     width: 100%;
     height: 12%;
-    background-color:black;
+    background-color:#333;
     position: absolute;
     bottom: 0;
     color: white;

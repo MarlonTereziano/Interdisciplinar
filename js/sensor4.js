@@ -62,8 +62,8 @@ const graphFourData = {
     graphFourlabelX.length = 0;
     graphFourDataInY.length = 0;
     graphFourDataOutY.length = 0;
-    timer = setInterval(tcpInGet, 200);
-    timer1 = setInterval(tcpOutGet, 200);
+    timer = setInterval(tcpInGet, 1000);
+    timer1 = setInterval(tcpOutGet, 1000);
   });
 
   document.getElementById("botaoParar").addEventListener('click',function (){
