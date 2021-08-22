@@ -5,6 +5,8 @@ var graphOneDataOutY = [];
 var timer;
 var timer1;
 var dateTime = new Date();
+var rangeIn = 0;
+var rangeOut = 0;
 
   const graphOneData = {
     labels: graphOnelabelX,
@@ -58,17 +60,17 @@ var dateTime = new Date();
 
   document.getElementById("botaoIniciar").addEventListener('click',function (){
     console.log("Iniciando Monitoramento!");
+    graphOnelabelX.length = 0;
+    graphOneDataInY.length = 0;
+    graphOneDataOutY.length = 0;  
     timer = setInterval(tcpInGet,1000);
-    timer1 = setInterval(tcpOutGet,1000);
+    timer1 = setInterval(tcpOutGet, 1000);
   });
 
   document.getElementById("botaoParar").addEventListener('click',function (){
     console.log("Parando Monitoramento!");
     clearInterval(timer);
-    clearInterval(timer1);
-    graphOnelabelX = [];
-    graphOneDataInY = [];
-    graphOneDataOutY = [];
+    clearInterval(timer1);      
   });
 
   function tcpInGet(){
@@ -76,13 +78,19 @@ var dateTime = new Date();
         url:"tcpinGet.php",
         data: "",
         method: "POST",
-        success: function(res){
-            console.log(res);
-            graphOnelabelX.push(dateTime.toLocaleString());
-            graphOneDataInY.push(res);
-            myChart.update();
+        success: function(response){
 
+          if(rangeIn === 0) {
+            rangeIn = response;
+          } else {
+            rangeIn = response - rangeIn;
+            graphOneDataInY.push(rangeIn);
+            myChart.update();
+          }
+          graphOnelabelX.push(dateTime.toLocaleString());
+          rangeIn = response;
         }
+        
       })
   }
 
@@ -92,11 +100,19 @@ var dateTime = new Date();
         url:"tcpoutGet.php",
         data: "",
         method: "POST",
-        success: function(res){
-          console.log(res);
-            graphOnelabelX.push(dateTime.toLocaleString());
-            graphOneDataOutY.push(res);
+        success: function(response) {
+
+          if(rangeOut === 0){
+            rangeOut = response
+          }else{
+            rangeOut = response - rangeOut;
+            graphOneDataOutY.push(rangeOut);
             myChart.update();
+          }
+          graphOnelabelX.push(dateTime.toLocaleString());
+
+          rangeOut = response;
+
         }
       })
   }

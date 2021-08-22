@@ -3,6 +3,9 @@ var graphThreeDataInY = [];
 var graphThreeDataOutY = [];
 var timer;
 var timer1;
+var dateTime = new Date();
+var rangeIn = 0;
+var rangeOut = 0;
 
   const data = {
     labels: graphThreelabelX,
@@ -56,6 +59,9 @@ var timer1;
 
   document.getElementById("botaoIniciar").addEventListener('click',function (){
     console.log("Iniciando Monitoramento!");
+    graphThreelabelX.length = 0;
+    graphThreeDataInY.length = 0;
+    graphThreeDataOutY.length = 0;
     timer = setInterval(tcpInGet,1000);
     timer1 = setInterval(tcpOutGet,1000);
   });
@@ -64,9 +70,7 @@ var timer1;
     console.log("Parando Monitoramento!");
     clearInterval(timer);
     clearInterval(timer1);
-    graphThreelabelX = [];
-    graphThreeDataInY = [];
-    graphThreeDataOutY = [];
+    
   });
 
   function tcpInGet(){
@@ -74,11 +78,17 @@ var timer1;
         url:"udpInGet.php",
         data: "",
         method: "POST",
-        success: function(res){
-            var dateTime = new Date();
+        success: function(response){           
+
+            if(rangeIn === 0) {
+              rangeIn = response;
+            } else {
+              rangeIn = response - rangeIn;
+              graphThreeDataInY.push(rangeIn);
+              myChart.update();
+            }
             graphThreelabelX.push(dateTime.toLocaleString());
-            graphThreeDataInY.push(res);
-            myChart.update();
+            rangeIn = response;
         }
       })
   }
@@ -89,12 +99,18 @@ var timer1;
         url:"udpOutGet.php",
         data: "",
         method: "POST",
-        success: function(res){
-          console.log(res);
-            var dateTime = new Date();
+        success: function(response){
+
+            if(rangeOut === 0){
+              rangeOut = response
+            }else{
+              rangeOut = response - rangeOut;
+              graphThreeDataOutY.push(rangeOut);
+              myChart.update();
+            }
             graphThreelabelX.push(dateTime.toLocaleString());
-            graphThreeDataOutY.push(res);
-            myChart.update();
+            rangeOut = response;
+            
         }
       })
   }

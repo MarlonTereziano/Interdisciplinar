@@ -3,6 +3,9 @@ var graphFourDataInY = [];
 var graphFourDataOutY = [];
 var timer;
 var timer1;
+var dateTime = new Date();
+var rangeIn = 0;
+var rangeOut = 0;
 
 const graphFourData = {
     labels: graphFourlabelX,
@@ -56,17 +59,18 @@ const graphFourData = {
 
   document.getElementById("botaoIniciar").addEventListener('click',function (){
     console.log("Iniciando Monitoramento!");
-    timer = setInterval(tcpInGet,200);
-    timer1 = setInterval(tcpOutGet,200);
+    graphFourlabelX.length = 0;
+    graphFourDataInY.length = 0;
+    graphFourDataOutY.length = 0;
+    timer = setInterval(tcpInGet, 200);
+    timer1 = setInterval(tcpOutGet, 200);
   });
 
   document.getElementById("botaoParar").addEventListener('click',function (){
     console.log("Parando Monitoramento!");
     clearInterval(timer);
     clearInterval(timer1);
-    graphFourlabelX = [];
-    graphFourDataInY = [];
-    graphFourDataOutY = [];
+    
   });
 
   function tcpInGet(){
@@ -74,12 +78,17 @@ const graphFourData = {
         url:"snmpOutGet.php",
         data: "",
         method: "POST",
-        success: function(res){
-            var dateTime = new Date();
+        success: function(response){
+            if(rangeIn === 0) {
+              rangeIn = response;
+            } else {
+              rangeIn = response - rangeIn;
+              graphFourDataInY.push(rangeIn);
+              myChart.update();
+            }
             graphFourlabelX.push(dateTime.toLocaleString());
-            graphFourDataInY.push(res);
-            myChart.update();
-        }
+            rangeIn = response;
+          }        
       })
   }
 
@@ -89,12 +98,19 @@ const graphFourData = {
         url:"snmpInGet.php",
         data: "",
         method: "POST",
-        success: function(res){
-          console.log(res);
-            var dateTime = new Date();
+        success: function(response){
+            if(rangeOut === 0){
+              rangeOut = response
+            } else {
+              rangeOut = response - rangeOut;
+              graphFourDataOutY.push(rangeOut);
+              myChart.update();
+            }
             graphFourlabelX.push(dateTime.toLocaleString());
-            graphFourDataOutY.push(res);
-            myChart.update();
-        }
+  
+            rangeOut = response;
+  
+          }
+        
       })
   }
